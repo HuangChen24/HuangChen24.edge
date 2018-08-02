@@ -15,7 +15,7 @@ server_location = round(unifrnd(1, WIDTH, M, 2));       % the servers' location
 
 gamma = round(unifrnd(1, 100, M, 1));                   % each server's computation cost
 Q = round(unifrnd(1, q, M, 1));                         % each server's capacity (number of containers)
-eta1  = 10; eta2 = 10;      % eta1 & eta2 represents the constant factors of communication cost and relocation cost, respectively
+eta1 = 10; eta2 = 10;       % eta1 & eta2 represents the constant factors of communication cost and relocation cost, respectively
 
 optimal_X = zeros(T, N);                                % the decision variable for each user at each time slot
 
