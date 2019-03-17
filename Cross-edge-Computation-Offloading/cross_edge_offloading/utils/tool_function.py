@@ -1,5 +1,5 @@
 """
-This module contains the tool functions about Communication and Computing details in edge computing systems.
+This module contains static tool functions about Communication and Computing details in edge computing systems.
 
 Author:
     Hailiang Zhao
@@ -10,7 +10,7 @@ from geopy.distance import geodesic
 import random
 
 
-class ToolFunction:
+class ToolFunction(object):
     """
     This class defines the tool functions about Communication and Computing.
     """
@@ -47,17 +47,6 @@ class ToolFunction:
         return np.random.exponential(scale=mu)
 
     @staticmethod
-    def log(algo, content):
-        """
-        Output logs for computation offloading problem.
-
-        :param algo: the algorithm chosen
-        :param content: the text content
-        :return: no return value
-        """
-        print('==>' + algo + '<==:', content)
-
-    @staticmethod
     def obtain_geo_distance(user_pos, server_pos):
         """
         Calculate the geography distance between a particular mobile device and a particular edge server.
@@ -69,76 +58,101 @@ class ToolFunction:
         return geodesic(tuple(user_pos), tuple(server_pos)).m
 
     @staticmethod
-    def generate_harvestable_energy(parameter):
+    def generate_harvestable_energys(max_harvest_energy, trials):
         """
-        Generate harvestable energy $E_i^H$.
+        Generate harvestable energy $E_i^H$ for all mobile devices.
 
-        :param parameter:
-        :return:
+        :param max_harvest_energy: the pre-defined maximum harvestable energy
+        :param trials: the number of trials
+        :return: a list contains generated harvestable energy
         """
-        return random.uniform(0, parameter.get_max_harvest_energy())
+        return list(map(random.uniform, [0] * trials, [max_harvest_energy] * trials))
 
     @staticmethod
-    def obtain_transmit_times(edge_selection, parameter, distances):
+    def obtain_transmit_times(division, edge_selection, parameter, channel_power_gains):
         """
         Calculate the transmission time of one mobile device to its every chosen 'connectable' edge sites,
-        described in numpy array.
+        described in numpy array. Only be called when edge_selections is not [0, 0, ..., 0].
 
+        :param division: the number of chosen edge sites
         :param edge_selection: the edge selection decision, such as [0,1,0,...,1] (numpy array)
         :param parameter: the instance of Parameter
-        :param distances: the distance from a mobile device to every connectable edge sites, described in numpy array
+        :param channel_power_gains: the channel power gains from a mobile device to every connectable edge sites
         :return: the transmit times from a user to chosen edge sites (numpy array)
         """
-        division = sum(edge_selection)
         offload_data_size = parameter.get_edge_input_size() / division
-        channel_power_gains = list(map(ToolFunction.obtain_channel_power_gain,
-                                       [parameter.get_path_loss_const()] * division, distances))
+        # remove non-chosen gains
+        gains = [channel_power_gains[j] for j in range(len(channel_power_gains)) if edge_selection[j] == 1]
+
         achieve_rates = list(map(ToolFunction.obtain_achieve_rate, [parameter.get_bandwidth()] * division,
-                                 channel_power_gains, [parameter.get_transmit_power()] * division,
+                                 gains, [parameter.get_transmit_power()] * division,
                                  [parameter.get_noise()] * division))
         transmit_times = np.repeat(offload_data_size, division) / achieve_rates
         return transmit_times
 
     @staticmethod
-    def obtain_transmit_energys(edge_selection, parameter, distances):
+    def obtain_transmit_energy(division, edge_selection, parameter, channel_power_gains):
         """
-        Calculate the transmission energy consumption of one mobile device
+        Calculate the transmission energy consumption of one mobile device.
 
+        :param division: the number of chosen edge sites
         :param edge_selection: the edge selection decision, such as [0,1,0,...,1] (numpy array)
         :param parameter: the instance of Parameter
-        :param distances: the distance from a mobile device to every connectable edge sites, described in numpy array
+        :param channel_power_gains: the channel power gains from a mobile device to every connectable edge sites
         :return: the transmit energy consumption
         """
-        return sum(ToolFunction.obtain_transmit_times(edge_selection, parameter, distances) *
+        return sum(ToolFunction.obtain_transmit_times(division, edge_selection, parameter, channel_power_gains) *
                    parameter.get_transmit_power())
 
     @staticmethod
-    def obtain_edge_exe_times(edge_selection, parameter):
+    def obtain_edge_exe_times(division, parameter):
         """
-        Calculate the edge execution time of a mobile device on every chosen edge sites.
+        Calculate the edge execution time of a mobile device on every chosen edge sites. Only be called when
+        edge_selections is not [0, 0, ..., 0].
 
-        :param edge_selection: the edge selection decision, such as [0,1,0,...,1] (numpy array)
+        :param division: the number of chosen edge sites
         :param parameter: the instance of Parameter
-        :return: the edge execution times (numpy array)
+        :return: the edge execution times o f chosen edge sites (numpy array)
         """
-        division = sum(edge_selection)
         # CPU-cycle required in every chosen edge sites
         cpu_cycle_required = parameter.get_unit_cpu_num() * parameter.get_edge_input_size() / division
         # notice that we set CPU-cycle frequency of every edge sites the same,
-        # thus the edge execution times are the same
+        # thus the edge execution times are the same, otherwise we should use map function
         edge_exe_times = np.repeat(cpu_cycle_required / parameter.get_edge_cpu_freq(), division)
         return edge_exe_times
 
     @staticmethod
-    def sample_from_bernoulli(trials, parameter):
+    def sample_from_bernoulli(trials, prob_threshold):
         """
-        Sample from Bernoulli Distribution with probability $\rho$.
+        Sample from Bernoulli Distribution with probability $\\rho$.
 
         :param trials: number of trials
-        :param parameter: the instance of class Parameter
+        :param prob_threshold: the threshold probability
         :return: sampling results in numpy array ([0, 1, 1, ..., 0, 1])
         """
         samples = np.repeat(0, trials)
         for i in range(trials):
-            samples[i] = 1 if random.random() <= parameter.get_task_request_prob() else 0
+            samples[i] = 1 if random.random() <= prob_threshold else 0
         return samples
+
+    @staticmethod
+    def sample_uniform_integer(lower, upper):
+        """
+        Sample from uniform distribution in discrete region [lower, upper].
+
+        :param lower: the lower bound of region
+        :param upper: the upper bound of region
+        :return: the sampled result
+        """
+        return random.randint(lower, upper)
+
+    @staticmethod
+    def sample_uniform_double(lower, upper):
+        """
+        Sample from uniform distribution in continues region [lower, upper].
+
+        :param lower: the lower bound of region
+        :param upper: the upper bound of region
+        :return: the sampled result
+        """
+        return random.uniform(lower, upper)
