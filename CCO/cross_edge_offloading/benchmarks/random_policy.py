@@ -5,7 +5,7 @@ It inherits from class OffloadingCommon.
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.offloading_common import OffloadingCommon
+from CCO.cross_edge_offloading.offloading_common import OffloadingCommon
 
 
 class RandomPolicy(OffloadingCommon):

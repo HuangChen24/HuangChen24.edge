@@ -5,8 +5,8 @@ This module defines the interface to call GreedySelection Benchmark on Computati
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.benchmarks.greedy_computation_policy import GreedyCompute
-from cross_edge_offloading.parameter import Parameter
+from CCO.cross_edge_offloading.benchmarks.greedy_computation_policy import GreedyCompute
+from CCO.cross_edge_offloading.parameter import Parameter
 
 
 all_costs = []

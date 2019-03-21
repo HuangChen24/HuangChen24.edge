@@ -5,8 +5,8 @@ It inherits from class OffloadingCommon.
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.offloading_common import OffloadingCommon
-from cross_edge_offloading.utils.tool_function import ToolFunction
+from CCO.cross_edge_offloading.offloading_common import OffloadingCommon
+from CCO.cross_edge_offloading.utils.tool_function import ToolFunction
 import numpy as np
 import random
 

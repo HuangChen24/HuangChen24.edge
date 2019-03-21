@@ -4,12 +4,12 @@ This module defines the interface to run Simulation.
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.cco.cco_algorithm import CcoAlgorithm
-from cross_edge_offloading.benchmarks.random_policy import RandomPolicy
-from cross_edge_offloading.benchmarks.greedy_communication_policy import GreedyComm
-from cross_edge_offloading.benchmarks.greedy_computation_policy import GreedyCompute
-from cross_edge_offloading.parameter import Parameter
-from racos.dimension import Dimension
+from CCO.cross_edge_offloading.cco.cco_algorithm import CcoAlgorithm
+from CCO.cross_edge_offloading.benchmarks.random_policy import RandomPolicy
+from CCO.cross_edge_offloading.benchmarks.greedy_communication_policy import GreedyComm
+from CCO.cross_edge_offloading.benchmarks.greedy_computation_policy import GreedyCompute
+from CCO.cross_edge_offloading.parameter import Parameter
+from CCO.racos.dimension import Dimension
 import numpy as np
 
 

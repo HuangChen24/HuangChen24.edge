@@ -4,8 +4,8 @@ This module defines the class Racos.
 Author:
     Hailiang Zhao (Consult works done by Yi-Qi Hu from Nanjing University)
 """
-from racos.instance import Instance
-from cross_edge_offloading.utils.tool_function import ToolFunction
+from CCO.racos.instance import Instance
+from CCO.cross_edge_offloading.utils.tool_function import ToolFunction
 
 
 class Racos(object):

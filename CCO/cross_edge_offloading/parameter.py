@@ -7,7 +7,7 @@ Author:
 """
 import pandas as pd
 import numpy as np
-from cross_edge_offloading.utils.tool_function import ToolFunction
+from CCO.cross_edge_offloading.utils.tool_function import ToolFunction
 import random
 
 

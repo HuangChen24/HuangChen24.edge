@@ -5,8 +5,8 @@ This module defines the interface to call GreedySelection Benchmark on Communica
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.benchmarks.greedy_communication_policy import GreedyComm
-from cross_edge_offloading.parameter import Parameter
+from CCO.cross_edge_offloading.benchmarks.greedy_communication_policy import GreedyComm
+from CCO.cross_edge_offloading.parameter import Parameter
 
 
 all_costs = []

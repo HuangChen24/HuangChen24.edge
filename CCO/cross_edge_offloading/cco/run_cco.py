@@ -5,9 +5,9 @@ This module defines the interface to call Cross-edge Computation Offloading Algo
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.cco.cco_algorithm import CcoAlgorithm
-from cross_edge_offloading.parameter import Parameter
-from racos.dimension import Dimension
+from CCO.cross_edge_offloading.cco.cco_algorithm import CcoAlgorithm
+from CCO.cross_edge_offloading.parameter import Parameter
+from CCO.racos.dimension import Dimension
 
 
 all_costs = []

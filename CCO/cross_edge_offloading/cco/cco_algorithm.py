@@ -5,12 +5,12 @@ Racos. In order to avoid Multiple Inheritance, the code from class OffloadingCom
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.utils.tool_function import ToolFunction
+from CCO.cross_edge_offloading.utils.tool_function import ToolFunction
 import numpy as np
 import random
-from racos.racos import Racos
-from racos.instance import Instance
-from racos.dimension import Dimension
+from CCO.racos.racos import Racos
+from CCO.racos.instance import Instance
+from CCO.racos.dimension import Dimension
 
 
 class CcoAlgorithm(Racos):

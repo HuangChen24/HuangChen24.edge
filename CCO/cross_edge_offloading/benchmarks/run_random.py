@@ -4,8 +4,8 @@ This module defines the interface to call Random Selection Benchmark.
 Author:
     Hailiang Zhao
 """
-from cross_edge_offloading.benchmarks.random_policy import RandomPolicy
-from cross_edge_offloading.parameter import Parameter
+from CCO.cross_edge_offloading.benchmarks.random_policy import RandomPolicy
+from CCO.cross_edge_offloading.parameter import Parameter
 
 
 all_costs = []

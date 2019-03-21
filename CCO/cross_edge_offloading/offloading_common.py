@@ -10,7 +10,7 @@ copied from OffloadingCommon, which are marked by annotations.
 Author:
     Hailiang Zhao, Cheng Zhang
 """
-from cross_edge_offloading.utils.tool_function import ToolFunction
+from CCO.cross_edge_offloading.utils.tool_function import ToolFunction
 import numpy as np
 import random
 
