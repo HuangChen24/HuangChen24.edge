@@ -2,7 +2,7 @@
 ## Lyapunov Optimization-based Dynamic Computation Offloading (LODCO)
 `Lyapunov Optimization-based Dynamic Computation Offloading (LODCO) Algorithm` is the algorithm proposed in paper "Dynamic computation offloading for mobile-edge computing with energy harvesting devices", which can be found at https://ieeexplore.ieee.org/document/7572018.
 
-The corresponding directory of codes is "Lyapunov-Optimization-based-Dynamic-Computation-Offloading".
+The corresponding directory of codes is "LODCO".
 
 ### LODCO Algorithm
 The MATLAB code for this algorithm is **LODCO.m**.
@@ -21,4 +21,6 @@ The corresponding MATLAB directory is "PG-SAA".
 
 ## Cross-edge Computation Offloading (CCO)
 `Cross-edge Computation Offloading (CCO) Algorithm` is an computation offloading algorithm proposed recently for multi-user multi-server MEC systems. Details 
-can be found at https://github.com/NarcissusHliangZhao/Implementation-of-MEC-papers/tree/master/Cross-edge-Computation-Offloading.
+can be found at https://github.com/NarcissusHliangZhao/Implementation-of-MEC-papers/tree/master/Cross-edge-Computation-Offloading. 
+
+The corresponding Python directory is "CCO".
