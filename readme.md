@@ -21,6 +21,6 @@ The corresponding MATLAB directory is "PG-SAA".
 
 ## Cross-edge Computation Offloading (CCO)
 `Cross-edge Computation Offloading (CCO) Algorithm` is an computation offloading algorithm proposed recently for multi-user multi-server MEC systems. Details 
-can be found at https://github.com/NarcissusHliangZhao/Implementation-of-MEC-papers/tree/master/Cross-edge-Computation-Offloading. 
+can be found at https://github.com/NarcissusHliangZhao/Implementation-of-MEC-papers/tree/master/CCO. 
 
 The corresponding Python directory is "CCO".
